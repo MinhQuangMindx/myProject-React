@@ -1,5 +1,7 @@
+import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import SignupForm from SignupForm.js;
 
 const SignupForm = () => {
   const initialValues = {
@@ -101,37 +103,3 @@ const SignupSchema = Yup.object().shape({
     .oneOf([Yup.ref("password"), null], "Mật khẩu không khớp")
     .required("Vui lòng nhập lại mật khẩu"),
 });
-
-function SignupForm() {
-  const { register, handleSubmit, errors } = useForm({
-    resolver: yupResolver(SignupSchema),
-  });
-
-  const onSubmit = (data) => {
-    console.log(data);
-  };
-
-  return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <label htmlFor="username">Tên người dùng</label>
-      <input name="username" ref={register} />
-      {errors.username && <p>{errors.username.message}</p>}
-
-      <label htmlFor="email">Email</label>
-      <input name="email" ref={register} />
-      {errors.email && <p>{errors.email.message}</p>}
-
-      <label htmlFor="password">Mật khẩu</label>
-      <input name="password" type="password" ref={register} />
-      {errors.password && <p>{errors.password.message}</p>}
-
-      <label htmlFor="confirmPassword">Nhập lại mật khẩu</label>
-      <input name="confirmPassword" type="password" ref={register} />
-      {errors.confirmPassword && <p>{errors.confirmPassword.message}</p>}
-
-      <button type="submit">Đăng ký</button>
-    </form>
-  );
-}
-
-// import React from 'react';
